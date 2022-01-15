@@ -3,8 +3,13 @@ import './Chat.css';
 import {MessageList} from "../message-list/MessageList";
 import {InputMessageArea} from "../input-message-area/InputMessageArea";
 import {MessageType} from "../../util/types";
+import {addMessage, getMessages} from "../../services/MessageService";
 
-export const Chat: FC = () => {
+interface ChatProps {
+  user: string;
+}
+
+export const Chat: FC<ChatProps> = ({user}) => {
 
   const [messages, setMessages] = React.useState<MessageType[]>([]);
 
@@ -17,13 +22,13 @@ export const Chat: FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const getMessagesFromServer = () => {
-    //TODO: implement service to call backend
-    setMessages([]);
+  const getMessagesFromServer = async () => {
+    const newMessagesPromise = await getMessages();
+    setMessages(newMessagesPromise.data);
   };
 
   const onMessageEntered = (text: string) => {
-    // TODO: send message to server
+    addMessage({user, text});
     getMessagesFromServer();
   };
 
