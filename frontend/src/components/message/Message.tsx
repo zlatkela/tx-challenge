@@ -1,24 +1,17 @@
 import React, {FC} from 'react';
 import './Message.css';
+import {MessageType} from "../../util/types";
 
 interface MessageProps {
-  user: string,
-  text: string,
-  timestamp: number
+  message: MessageType;
 }
 
-export const Message: FC<MessageProps> = (
-    {
-        user,
-        text,
-        timestamp
-    }
-) => {
+export const Message: FC<MessageProps> = ({message}) => {
 // TODO: check timestamp to date conversion
   return <div>
-    <p>{user}</p>
-    <p>{text}</p>
-    <p>{new Date(timestamp)}</p>
+    <p>{message.user}</p>
+    <p>{message.text}</p>
+    <p>{message.timestamp ? new Date(message.timestamp): undefined}</p>
   </div>
 };
 
