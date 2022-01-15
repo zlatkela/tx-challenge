@@ -1,26 +1,32 @@
 package com.services.tx.challenge.controller;
 
-import com.services.tx.challenge.model.Message;
-import java.util.ArrayList;
+import com.services.tx.challenge.dto.MessageDTO;
+import com.services.tx.challenge.mapper.ResourceMapper;
+import com.services.tx.challenge.service.MessageService;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/messages")
 public class MessageController {
 
+  private final MessageService messageService;
+  private final ResourceMapper resourceMapper;
+
   @GetMapping
-  public List<Message> getMessages() {
-//    TODO: implement method
-    return new ArrayList<>();
+  public List<MessageDTO> getMessages() {
+    return resourceMapper.mapToDTO(messageService.getAllMessages());
   }
 
   @PostMapping
-  public Message addMessage() {
-//    TODO: implement method
-    return null;
+  public MessageDTO addMessage(@RequestBody MessageDTO messageDTO) {
+    return resourceMapper
+        .mapToDTO(messageService.addMessage(resourceMapper.mapFromDTO(messageDTO)));
   }
 }

@@ -13,12 +13,10 @@ public class MessageService {
   private final MessageRepository messageRepository;
 
   public Message addMessage(Message message) {
-//    TODO: implement method
-    return null;
+    return messageRepository.save(message);
   }
 
   public List<Message> getAllMessages() {
-    //TODO: implement method
-    return null;
+    return messageRepository.findAllByOrderByCreatedAtAsc();
   }
 }
