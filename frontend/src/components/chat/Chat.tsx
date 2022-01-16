@@ -23,8 +23,24 @@ export const Chat: FC<ChatProps> = ({user}) => {
   }, []);
 
   const getMessagesFromServer = async () => {
-    const newMessagesPromise = await getMessages();
-    setMessages(newMessagesPromise.data);
+    const mockedMessages: MessageType[] = [{
+      "timestamp": 1642240183049,
+      "user": "Milos",
+      "text": "this second is test message"
+    }, {
+      "timestamp": 1642242500336,
+      "user": "Milos",
+      "text": "this second is test message"
+    },
+      {
+        "timestamp": 1642242500356,
+        "user": "User 1",
+        "text": "this third is test message"
+      }];
+
+    setMessages(mockedMessages);
+    // const newMessagesPromise = await getMessages();
+    // setMessages(newMessagesPromise.data);
   };
 
   const onMessageEntered = async (text: string) => {

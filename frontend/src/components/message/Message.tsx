@@ -11,7 +11,7 @@ export const Message: FC<MessageProps> = ({message}) => {
   return <div>
     <p>{message.user}</p>
     <p>{message.text}</p>
-    <p>{message.timestamp ? new Date(message.timestamp): undefined}</p>
+    <p>{message.timestamp ? new Date(message.timestamp).toDateString() : undefined}</p>
   </div>
 };
 
