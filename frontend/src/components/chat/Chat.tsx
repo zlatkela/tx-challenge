@@ -14,6 +14,7 @@ export const Chat: FC<ChatProps> = ({user}) => {
   const [messages, setMessages] = React.useState<MessageType[]>([]);
 
   React.useEffect(() => {
+    getMessagesFromServer();
     const interval = setInterval(() => {
       getMessagesFromServer();
     }, 5000);
