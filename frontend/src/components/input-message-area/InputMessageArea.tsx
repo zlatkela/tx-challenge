@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {ChangeEvent, FC, useState} from 'react';
 import './InputMessageArea.css';
 
 interface InputMessageAreaProps {
@@ -7,14 +7,32 @@ interface InputMessageAreaProps {
 
 export const InputMessageArea: FC<InputMessageAreaProps> = ({onMessageEntered}) => {
 
+  const [inputValue, setInputValue] = useState<string>('');
+
+  const onInputChanged = (event: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
+  const sendMessage = () => {
+    onMessageEntered(inputValue);
+    setInputValue('');
+  };
+
+  const onEnterPressed = (event: React.KeyboardEvent) => {
+    event.stopPropagation();
+    if(event.key === 'Enter') {
+      sendMessage();
+    }
+  };
+
+
   const onButtonClicked = (event: React.MouseEvent) => {
     event.stopPropagation();
-    // TODO: get value from input text
-    onMessageEntered("test");
+    sendMessage();
   };
 
   return <div>
-    <input type="text"/>
+    <input type="text" value={inputValue} onChange={onInputChanged} onKeyUp={onEnterPressed}/>
     <button onClick={onButtonClicked}>Send</button>
   </div>
 };

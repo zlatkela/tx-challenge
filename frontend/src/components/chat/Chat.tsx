@@ -15,7 +15,6 @@ export const Chat: FC<ChatProps> = ({user}) => {
 
   React.useEffect(() => {
     const interval = setInterval(() => {
-      console.log('Runs every 5 seconds');
       getMessagesFromServer();
     }, 5000);
 
@@ -27,12 +26,13 @@ export const Chat: FC<ChatProps> = ({user}) => {
     setMessages(newMessagesPromise.data);
   };
 
-  const onMessageEntered = (text: string) => {
-    addMessage({user, text});
+  const onMessageEntered = async (text: string) => {
+    await addMessage({user, text});
     getMessagesFromServer();
   };
 
   return <div>
+    <p>User: {user} </p>
     <MessageList messages={messages}/>
     <InputMessageArea onMessageEntered={onMessageEntered}/>
   </div>
