@@ -1,5 +1,5 @@
 export interface MessageType {
-  user: string,
+  author: string,
   text: string,
-  timestamp?: number
+  createdAt?: number
 }

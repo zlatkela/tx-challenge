@@ -28,7 +28,7 @@ export const Chat: FC<ChatProps> = ({user}) => {
   };
 
   const onMessageEntered = async (text: string) => {
-    await addMessage({user, text});
+    await addMessage({author: user, text});
     getMessagesFromServer();
   };
 

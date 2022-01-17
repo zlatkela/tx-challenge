@@ -7,11 +7,18 @@ interface MessageProps {
 }
 
 export const Message: FC<MessageProps> = ({message}) => {
-// TODO: check timestamp to date conversion
+
+  const formatDate = (timestamp: number) : string => {
+    const date = new Date(timestamp);
+
+    return date.toLocaleDateString() + " " + date.toLocaleTimeString();
+
+
+  };
   return <div>
-    <p>{message.user}</p>
+    <p>{message.author}</p>
     <p>{message.text}</p>
-    <p>{message.timestamp ? new Date(message.timestamp).toDateString() : undefined}</p>
+    <p>{message.createdAt ? formatDate(message.createdAt) : undefined}</p>
   </div>
 };
 
