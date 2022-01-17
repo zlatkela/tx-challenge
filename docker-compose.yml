@@ -1,0 +1,37 @@
+version: "3.7"
+
+services:
+  txchallenge-backend:
+    container_name: txchallenge-backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: txchallenge-backend
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/txchallengedb
+      - SPRING_DATASOURCE_USERNAME=txchallenge
+      - SPRING_DATASOURCE_PASSWORD=txchallenge
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - 8080:8080
+  db:
+    image: 'postgres:14-alpine'
+    container_name: db
+    environment:
+      - POSTGRES_USER=txchallenge
+      - POSTGRES_PASSWORD=txchallenge
+      - POSTGRES_DB=txchallengedb
+  txchallenge-frontend:
+    container_name: txchallenge-frontend
+    image: txchallenge-frontend
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - txchallenge-backend
+    volumes:
+      - ./src:/app/src
+    ports:
+      - 3000:3000
