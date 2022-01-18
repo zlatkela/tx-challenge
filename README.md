@@ -28,7 +28,7 @@ Implementation was done in iterative approach, with many changes and refactoring
 
 ## Improvements and alternatives 
 
-## General
+### General
 - Communication between FE and BE can be established through web sockets instead of polling of server.
 - Authentication part, so user can login. Now this is mocked in really basic way, just to have author of the message.
 - Data validation, so we don't have empty messages, users etc on both FE and BE.
