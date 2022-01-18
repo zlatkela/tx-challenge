@@ -1,14 +1,14 @@
-import React, {ChangeEvent, FC, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
 import './Login.css';
 
+import React, { ChangeEvent, FC, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 interface LoginProps {
-  user: string
+  user: string;
   onEnterChat: (value: string) => void;
 }
 
-export const Login: FC<LoginProps> = ({user, onEnterChat}) => {
-
+export const Login: FC<LoginProps> = ({ user, onEnterChat }) => {
   const [inputValue, setInputValue] = useState<string>(user);
 
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ export const Login: FC<LoginProps> = ({user, onEnterChat}) => {
 
   const createUsername = () => {
     onEnterChat(inputValue);
-    navigate('/chat');
+    navigate("/chat");
   };
 
   const onButtonClicked = (event: React.MouseEvent) => {
@@ -29,15 +29,28 @@ export const Login: FC<LoginProps> = ({user, onEnterChat}) => {
 
   const onEnterPressed = (event: React.KeyboardEvent) => {
     event.stopPropagation();
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       createUsername();
     }
   };
 
-  return <div>
-    <p>Enter you name</p>
-    <input type="text" value={inputValue} onChange={onInputChanged} onKeyUp={onEnterPressed}/>
-    <button onClick={onButtonClicked}>Enter chat</button>
-  </div>
+  return (
+    <div className="container">
+      <div className="panel-container">
+        <p className="strong">Enter your name</p>
+        <form action="">
+          <input
+            className="text-field"
+            type="text"
+            value={inputValue}
+            onChange={onInputChanged}
+            onKeyUp={onEnterPressed}
+          />
+          <button className="primary" onClick={onButtonClicked}>
+            Enter chat
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 };
-

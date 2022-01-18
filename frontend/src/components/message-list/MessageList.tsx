@@ -1,20 +1,24 @@
-import React, {FC} from 'react';
 import './MessageList.css';
-import {Message} from "../message/Message";
-import {MessageType} from "../../util/types";
+
+import React, { FC } from 'react';
+
+import { MessageType } from '../../util/types';
+import { Message } from '../message/Message';
 
 interface MessageListProps {
   messages: MessageType[];
+  currentUser: String;
 }
 
-export const MessageList: FC<MessageListProps> = ({messages}) => {
-
-  return <div>
-    {
-      messages.map((item, index) => {
-        return <Message message={item} key={index}/>
-      })
-    }
-  </div>
+export const MessageList: FC<MessageListProps> = ({
+  messages,
+  currentUser,
+}) => {
+  return (
+    <div className="ml-container">
+      {messages.map((item, index) => {
+        return <Message message={item} currentUser={currentUser} key={index} />;
+      })}
+    </div>
+  );
 };
-

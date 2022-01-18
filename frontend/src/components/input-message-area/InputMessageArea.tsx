@@ -1,13 +1,15 @@
-import React, {ChangeEvent, FC, useState} from 'react';
 import './InputMessageArea.css';
+
+import React, { ChangeEvent, FC, useState } from 'react';
 
 interface InputMessageAreaProps {
   onMessageEntered: (value: string) => void;
 }
 
-export const InputMessageArea: FC<InputMessageAreaProps> = ({onMessageEntered}) => {
-
-  const [inputValue, setInputValue] = useState<string>('');
+export const InputMessageArea: FC<InputMessageAreaProps> = ({
+  onMessageEntered,
+}) => {
+  const [inputValue, setInputValue] = useState<string>("");
 
   const onInputChanged = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -20,20 +22,28 @@ export const InputMessageArea: FC<InputMessageAreaProps> = ({onMessageEntered}) 
 
   const onEnterPressed = (event: React.KeyboardEvent) => {
     event.stopPropagation();
-    if(event.key === 'Enter') {
+    if (event.key === 'Enter') {
       sendMessage();
     }
   };
-
 
   const onButtonClicked = (event: React.MouseEvent) => {
     event.stopPropagation();
     sendMessage();
   };
 
-  return <div>
-    <input type="text" value={inputValue} onChange={onInputChanged} onKeyUp={onEnterPressed}/>
-    <button onClick={onButtonClicked}>Send</button>
-  </div>
+  return (
+    <div id="bottom-footer" className="input-message-container">
+      <input
+        className="text-field"
+        type="text"
+        value={inputValue}
+        onChange={onInputChanged}
+        onKeyUp={onEnterPressed}
+      />
+      <button className="primary" onClick={onButtonClicked}>
+        Send
+      </button>
+    </div>
+  );
 };
-

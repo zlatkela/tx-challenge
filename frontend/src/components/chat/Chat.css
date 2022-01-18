@@ -1,0 +1,31 @@
+.panel-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 3em;
+}
+.panel-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #b5bbcf;
+  padding: 0 0.5em;
+  margin: 0 -3em;
+  height: 10%;
+}
+.panel-header a {
+  color: #ed771d;
+  text-decoration: none;
+}
+.panel-header a:hover {
+  text-decoration: underline;
+}
+.panel-content {
+  height: 80%;
+}
+.panel-footer {
+  background-color: #b5bbcf;
+  margin: 0 -3em;
+  padding: 1em 0;
+  height: 10%;
+}

@@ -1,16 +1,17 @@
-import React, {FC} from 'react';
 import './Chat.css';
-import {MessageList} from "../message-list/MessageList";
-import {InputMessageArea} from "../input-message-area/InputMessageArea";
-import {MessageType} from "../../util/types";
-import {addMessage, getMessages} from "../../services/MessageService";
+
+import React, { FC } from 'react';
+
+import {addMessage, getMessages} from '../../services/MessageService';
+import { MessageType } from '../../util/types';
+import { InputMessageArea } from '../input-message-area/InputMessageArea';
+import { MessageList } from '../message-list/MessageList';
 
 interface ChatProps {
   user: string;
 }
 
-export const Chat: FC<ChatProps> = ({user}) => {
-
+export const Chat: FC<ChatProps> = ({ user }) => {
   const [messages, setMessages] = React.useState<MessageType[]>([]);
 
   React.useEffect(() => {
@@ -33,8 +34,7 @@ export const Chat: FC<ChatProps> = ({user}) => {
   };
 
   return <div>
-    <p>User: {user} </p>
-    <MessageList messages={messages}/>
+    <MessageList messages={messages} currentUser={user}/>
     <InputMessageArea onMessageEntered={onMessageEntered}/>
   </div>
 };

@@ -1,0 +1,19 @@
+.message-box {
+  background-color: #ecf2ef;
+  width: 30%;
+  margin: 1em;
+  border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em 1em;
+}
+.message-box p {
+  margin: 0;
+}
+.message-box p.content {
+  margin: 1em 0;
+}
+.message-box.me {
+  background-color: #fbfeb7;
+  align-self: flex-end;
+}
