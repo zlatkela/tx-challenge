@@ -29,6 +29,7 @@ public class Message {
 
   private String author;
 
+  @Column(length = 4000)
   private String text;
 
 }

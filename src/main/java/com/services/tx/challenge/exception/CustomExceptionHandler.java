@@ -17,25 +17,26 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 @Slf4j
 public class CustomExceptionHandler {
 
-  private static final ExceptionMapping DEFAULT_ERROR = new ExceptionMapping("SERVER_ERROR",
-      "Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+  private static final ExceptionMapping DEFAULT_ERROR = new ExceptionMapping(
+      Constants.SERVER_ERROR_CODE,
+      Constants.SERVER_ERROR_MESSAGE, HttpStatus.INTERNAL_SERVER_ERROR);
 
   private final Map<Class, ExceptionMapping> exceptionMappings = new HashMap<>();
 
   public CustomExceptionHandler() {
-    registerMapping(MissingServletRequestParameterException.class, "MISSING_PARAMETER",
-        "Missing request parameter", HttpStatus.BAD_REQUEST);
+    registerMapping(MissingServletRequestParameterException.class, Constants.MISSING_PARAMETER_CODE,
+        Constants.MISSING_PARAMETER_MESSAGE, HttpStatus.BAD_REQUEST);
 
-    registerMapping(MethodArgumentTypeMismatchException.class, "ARGUMENT_TYPE_MISMATCH",
-        "Argument type mismatch", HttpStatus.BAD_REQUEST);
+    registerMapping(MethodArgumentTypeMismatchException.class,
+        Constants.ARGUMENT_TYPE_MISMATCH_CODE,
+        Constants.ARGUMENT_TYPE_MISMATCH_MESSAGE, HttpStatus.BAD_REQUEST);
 
-    registerMapping(HttpRequestMethodNotSupportedException.class, "METHOD_NOT_SUPPORTED",
-        "HTTP method not supported", HttpStatus.METHOD_NOT_ALLOWED);
+    registerMapping(HttpRequestMethodNotSupportedException.class,
+        Constants.METHOD_NOT_SUPPORTED_CODE,
+        Constants.METHOD_NOT_SUPPORTED_MESSAGE, HttpStatus.METHOD_NOT_ALLOWED);
 
-    registerMapping(ServletRequestBindingException.class, "MISSING_HEADER",
-        "Missing header in request", HttpStatus.BAD_REQUEST);
-
-    //TODO: refactor this to be constants
+    registerMapping(ServletRequestBindingException.class, Constants.MISSING_HEADER_CODE,
+        Constants.MISSING_HEADER_MESSAGE, HttpStatus.BAD_REQUEST);
 
   }
 

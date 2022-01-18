@@ -1,7 +1,6 @@
 import {MessageType} from "../util/types";
 import axios, {AxiosResponse} from "axios";
 
-// TODO: refactor to use env;
 const config = {
   headers: {
     "Access-Control-Allow-Origin": "*",
